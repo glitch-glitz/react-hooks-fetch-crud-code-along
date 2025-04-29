@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import ShoppingList from "./ShoppingList";
+import Header from "./Header";
 
-function Header({ isDarkMode, onDarkModeClick }) {
+function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  function handleDarkModeClick() {
+    setIsDarkMode((prevState) => !prevState);
+  }
+
   return (
-    <header>
-      <h2>Shopster</h2>
-      <button onClick={onDarkModeClick}>
-        {isDarkMode ? "Dark" : "Light"} Mode
-      </button>
-    </header>
+    <div className={"App " + (isDarkMode ? "dark" : "light")}>
+      <Header isDarkMode={isDarkMode} onDarkModeClick={handleDarkModeClick} />
+      <ShoppingList />
+    </div>
   );
 }
 
-export default Header;
+export default App;
